@@ -33,11 +33,11 @@ resource "azurerm_resource_group" "rg-aks-2" {
 }
 
 resource "azurerm_storage_account" "StorageAccount" {
-  name                     = "cuongnh34storageaccount"
-  resource_group_name      = "StorageAccount-RG"
-  location                 = "East US"
-  account_tier             = "Standard"
-  account_replication_type = "RAGRS"
+  name                          = "cuongnh34storageaccount"
+  resource_group_name           = "StorageAccount-RG"
+  location                      = "East US"
+  account_tier                  = "Standard"
+  account_replication_type      = "RAGRS"
 }
 
 resource "azurerm_storage_container" "cuongnh34" {
