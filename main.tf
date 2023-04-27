@@ -31,3 +31,17 @@ resource "azurerm_resource_group" "rg-aks-2" {
   name     = "rg-terraform-github-actions-2"
   location = "eastus"
 }
+
+resource "azurerm_storage_account" "StorageAccount" {
+  name                     = "cuongnh34storageaccount"
+  resource_group_name      = "StorageAccount-RG"
+  location                 = "East US"
+  account_tier             = "Standard"
+  account_replication_type = "RAGRS"
+}
+
+resource "azurerm_storage_container" "cuongnh34" {
+  name                  = "cuongnh34storage"
+  container_access_type = "private"
+  storage_account_name  = azurerm_storage_account.StorageAccount.name
+}
