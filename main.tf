@@ -7,13 +7,13 @@ terraform {
   }
 
   # Update this block with the location of your terraform state file
-  backend "azurerm" {
-    resource_group_name  = "StorageAccount-RG"
-    storage_account_name = "cuongnh34storageaccount"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
-    use_oidc             = true
-  }
+  # backend "azurerm" {
+  #   resource_group_name  = "StorageAccount-RG"
+  #   storage_account_name = "cuongnh34storageaccount"
+  #   container_name       = "tfstate"
+  #   key                  = "terraform.tfstate"
+  #   use_oidc             = true
+  # }
 }
 
 provider "azurerm" {
@@ -33,7 +33,7 @@ resource "azurerm_resource_group" "rg-aks-2" {
 }
 
 resource "azurerm_storage_account" "StorageAccount" {
-  name                     = "cuongnh34storageaccount"
+  name                     = "cuongnh34storageaccount2"
   resource_group_name      = "StorageAccount-RG"
   location                 = "East US"
   account_tier             = "Standard"
