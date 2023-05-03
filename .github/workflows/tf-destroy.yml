@@ -2,20 +2,30 @@ name: Terraform Destroy
 on:
  workflow_dispatch:
 
+#Special permissions required for OIDC authentication
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+#These environment variables are used by the terraform azure provider to setup OIDD authenticate. 
+env:
+  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+
 jobs:
  tf-destroy:
    runs-on: ubuntu-latest
-   env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: 'us-west-1'
    steps:
       - name: Checkout
         uses: actions/checkout@v3
         
       - name: Setup Terraform                                                                      
         uses: hashicorp/setup-terraform@v2
-
+        with:
+          terraform_wrapper: false
+          
       - name: Terraform Init
         id: init
         run: terraform init  
