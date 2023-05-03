@@ -32,20 +32,6 @@ resource "azurerm_resource_group" "rg-aks-2" {
   location = "eastus"
 }
 
-resource "azurerm_storage_account" "StorageAccount" {
-  name                     = "cuongnh34storageaccount2"
-  resource_group_name      = "StorageAccount-RG"
-  location                 = "East US"
-  account_tier             = "Standard"
-  account_replication_type = "RAGRS"
-}
-
-resource "azurerm_storage_container" "cuongnh34" {
-  name                  = "cuongnh34storage"
-  container_access_type = "private"
-  storage_account_name  = azurerm_storage_account.StorageAccount.name
-}
-
 resource "azurerm_storage_account" "StorageAccount3" {
   name                     = "cuongnh34storageaccount3"
   resource_group_name      = "StorageAccount-RG"
